@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Ototur",
+    "slug": "Ototur",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "Ototur"
+}
