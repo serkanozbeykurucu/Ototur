@@ -33,8 +33,8 @@ const App = () => {
           options={{ title: 'Home' }}
         />
         <Stack.Screen
-          name='SearchScreen'
-          component={SearchScreen}
+          name='CarSearchScreen'
+          component={CarSearchScreen}
           options={{title:'Search'}}
         />
       </Stack.Navigator>
