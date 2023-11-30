@@ -35,7 +35,7 @@ const App = () => {
         <Stack.Screen
           name='CarSearchScreen'
           component={CarSearchScreen}
-          options={{title:'Search'}}
+          options={{title:'CarSearchScreen'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
