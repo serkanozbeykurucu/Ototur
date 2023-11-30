@@ -1,30 +1,30 @@
 import { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, ScrollView, KeyboardAvoidingView, StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, Text, TextInput, Button, Alert, StyleSheet ,Image} from 'react-native';
 
+const logoImage = require('../assets/logoototur.png');
 const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async (username, password) => {
     try {
-      console.log('Username:' + username + ' ' + 'Passoword:' + password);
+      console.log('Username:' + username + ' ' + 'Password:' + password);
       const formData = new URLSearchParams();
       formData.append('username', username);
       formData.append('password', password);
-      console.log(formData);
-      const response = await fetch('https://rentapisinav.ototur.com/api/v1/gettoken', {
+      const myHeaders = new Headers();
+      myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+      const requestOptions = {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
+        headers: myHeaders,
         body: formData,
-      });
-
+        redirect: 'follow',
+      };
+      const response = await fetch('https://rentapisinav.ototur.com/api/v1/gettoken', requestOptions);
       if (response.ok) {
         const token = await response.json();
         console.log(token);
-        console.log(response);
+        alert(token);
         navigation.navigate('HomeScreen', { token });
       } else {
         console.error('Login failed', response.status);
@@ -38,13 +38,18 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Username:</Text>
+      <Image
+        source={logoImage}
+        style={styles.image}
+        resizeMode="contain"
+      />
+      <Text style={styles.label}>Username</Text>
       <TextInput
         style={styles.input}
         value={username}
         onChangeText={(text) => setUsername(text)}
       />
-      <Text style={styles.label}>Password:</Text>
+      <Text style={styles.label}>Password</Text>
       <TextInput
         style={styles.input}
         value={password}
@@ -65,7 +70,9 @@ const styles = StyleSheet.create({
   },
   label: {
     marginBottom: 5,
-  },
+    fontSize: 18,
+    marginRight:215
+    },
   input: {
     height: 40,
     width: 300,
@@ -80,6 +87,9 @@ const styles = StyleSheet.create({
     width: 300,
     marginTop: 10,
   },
+  image: {
+    width: '80%',
+  }
 });
 
 export default LoginScreen;
