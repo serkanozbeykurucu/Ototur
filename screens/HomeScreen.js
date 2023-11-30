@@ -8,6 +8,9 @@ const SearchScreen = () => {
   const [fromLocation, setFromLocation] = useState(null);
   const [toLocation, setToLocation] = useState(null);
 
+  const handleCarSearch = async () => {
+    navigation.navigate('SearchScreen');
+  }
   const fetchLocations = async () => {
     try {
       const bearerToken = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InlicyIsImV4cCI6MTcwMTMzMjIxNn0.YoZKcESabwWI7lyXeWrn-HwC81PvRHDcUNCUoIliIGs';
@@ -57,6 +60,8 @@ const SearchScreen = () => {
       <TouchableOpacity style={styles.button}>
         <Text style={{ color: '#fff', textAlign: 'center' }}>Search</Text>
       </TouchableOpacity>
+      
+      
     </View>
   );
 };
