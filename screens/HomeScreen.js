@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 
-const SearchScreen = () => {
+const HomeScreen = () => {
   const [locations, setLocations] = useState([]);
   const [fromLocation, setFromLocation] = useState(null);
   const [toLocation, setToLocation] = useState(null);
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchScreen;
+export default HomeScreen;
