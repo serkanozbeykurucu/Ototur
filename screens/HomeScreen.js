@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import DropDownPicker from 'react-native-dropdown-picker';
-import { View, Text,StyleSheet } from 'react-native';
-import { Button } from 'react-native-web';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+
 
 const SearchScreen = () => {
   const [locations, setLocations] = useState([]);
@@ -34,37 +34,46 @@ const SearchScreen = () => {
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <View style={{ width: '80%' }}>
         <Text style={styles.label}>From</Text>
-        <DropDownPicker
-          items={locations.map(location => ({ label: location.name, value: location }))}
-          defaultValue={fromLocation}
-          containerStyle={{ height: 40, marginBottom: 20 }}
-          onChangeItem={item => setFromLocation(item.value)}
-          style={{ borderColor: '#000', backgroundColor: '#fff' }}
-        />
+        <Picker
+          selectedValue={fromLocation}
+          style={{ height: 40, marginBottom: 20, borderColor: '#000', backgroundColor: '#fff' }}
+          onValueChange={(itemValue) => setFromLocation(itemValue)}
+        >
+          {locations.map((location, index) => (
+            <Picker.Item key={index} label={location.name} value={location} />
+          ))}
+        </Picker>
         <Text style={styles.label}>To</Text>
-        <DropDownPicker
-          items={locations.map(location => ({ label: location.name, value: location }))}
-          defaultValue={toLocation}
-          containerStyle={{ height: 40, marginBottom: 20 }}
-          onChangeItem={item => setToLocation(item.value)}
-          style={{ borderColor: '#000', backgroundColor: '#fff' }}
-        />
+        <Picker
+          selectedValue={toLocation}
+          style={{ height: 40, marginBottom: 20, borderColor: '#000', backgroundColor: '#fff' }}
+          onValueChange={(itemValue) => setToLocation(itemValue)}
+        >
+          {locations.map((location, index) => (
+            <Picker.Item key={index} label={location.name} value={location} />
+          ))}
+        </Picker>
       </View>
-  </View>
+      <TouchableOpacity style={styles.button}>
+        <Text style={{ color: '#fff', textAlign: 'center' }}>Search</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  label:{
+  label: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom:6
+    marginBottom: 6,
   },
-  button:{
-    borderRadius:12,
-    width:300,
-    marginTop:10
-  }
-  
-})
+  button: {
+    borderRadius: 12,
+    width: 300,
+    marginTop: 20,
+    backgroundColor: '#007BFF',
+    paddingVertical: 10,
+  },
+});
+
 export default SearchScreen;
