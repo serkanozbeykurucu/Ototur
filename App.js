@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -10,9 +9,28 @@ const Stack = createStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LoginScreen">
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
-        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Navigator
+        initialRouteName="LoginScreen"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ title: 'Login' }}
+        />
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{ title: 'Home' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
